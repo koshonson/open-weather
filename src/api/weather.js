@@ -55,9 +55,10 @@ export const parseWeather = {
 			name,
 			wind,
 			main: { temp, feels_like, humidity, pressure },
-			sys: { country, sunrise, sunset },
+			sys: { country },
 			weather: [{ id, description }],
-			dt
+			dt,
+			timezone
 		} = data;
 		return {
 			name,
@@ -71,11 +72,8 @@ export const parseWeather = {
 				id,
 				description
 			},
-			sunHours: {
-				sunrise: new Date(sunrise * 1000),
-				sunset: new Date(sunset * 1000)
-			},
-			ts: new Date(dt * 1000)
+			ts: new Date(dt * 1000),
+			tsLocal: new Date(dt * 1000 + timezone * 1000)
 		};
 	},
 	forecast: ({ daily }) => {
