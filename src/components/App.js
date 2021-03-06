@@ -31,8 +31,7 @@ const App = () => {
 	return (
 		<div className="container">
 			<Search setSearchTerm={setSearchTerm} />
-			<Current />
-			<Forecast />
+			<Current weather={currentWeather} />
 		</div>
 	);
 };
