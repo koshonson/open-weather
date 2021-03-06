@@ -1,3 +1,4 @@
+import '../styles/search.css';
 import React, { useState } from 'react';
 
 const Search = ({ setSearchTerm }) => {
@@ -6,6 +7,7 @@ const Search = ({ setSearchTerm }) => {
 	const onFormSubmit = e => {
 		e.preventDefault();
 		setSearchTerm(term);
+		setTerm('');
 	};
 
 	const onInputChange = e => {
@@ -14,10 +16,17 @@ const Search = ({ setSearchTerm }) => {
 	};
 
 	return (
-		<div>
-			<form onSubmit={onFormSubmit}>
-				<input type="text" onChange={onInputChange} value={term}></input>
-				<button type="submit">SUBMIT</button>
+		<div className="search-bar">
+			<form className="search-form" onSubmit={onFormSubmit}>
+				<input
+					type="text"
+					className="term-input"
+					value={term}
+					onChange={onInputChange}
+				></input>
+				<button type="submit" className="button">
+					SEARCH
+				</button>
 			</form>
 		</div>
 	);

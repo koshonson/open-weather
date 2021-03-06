@@ -1,3 +1,4 @@
+import '../styles/app.css';
 import React, { useState, useEffect } from 'react';
 import { getWeather, parseWeather } from '../api/weather';
 import Search from './Search';
@@ -11,23 +12,24 @@ const App = () => {
 	const [forecast, setForecast] = useState(null);
 
 	useEffect(async () => {
-		const { data } = await getWeather.currentByTerm(searchTerm);
-		setCurrentWeather(parseWeather.current(data));
-		setLocation(parseWeather.coords(data));
-		console.log(currentWeather);
-		console.log(location);
+		try {
+			const { data } = await getWeather.currentByTerm(searchTerm);
+			setCurrentWeather(parseWeather.current(data));
+			setLocation(parseWeather.coords(data));
+		} catch {
+			console.log(`No such location (${searchTerm}) found.`);
+		}
 	}, [searchTerm]);
 
 	useEffect(async () => {
 		if (location) {
 			const { data } = await getWeather.forecast(location);
 			setForecast(parseWeather.forecast(data));
-			console.log(forecast);
 		}
 	}, [location]);
 
 	return (
-		<div>
+		<div className="container">
 			<Search setSearchTerm={setSearchTerm} />
 			<Current />
 			<Forecast />
