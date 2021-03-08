@@ -13,11 +13,11 @@ body {
 }
 
 .container {
-	min-height: 100vh;
+	min-height: 95vh;
 	margin: 0 15vw;
 	padding: 25px;
 	display: grid;
-	grid-template-rows: repeat(4, minmax(auto, min-content));
+	grid-template-rows: repeat(4, minmax(auto, min-content)) max-content;
 	background-color: rgba(0, 0, 0, 0.1);
 }
 

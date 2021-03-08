@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { getWeather, parseWeather } from '../api/weather';
 import Search from './Search';
 import Content from './Content';
-// import Footer from './Footer';
+import Footer from './Footer';
 
 const App = () => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -64,7 +64,7 @@ const App = () => {
 				<Search setSearchTerm={setSearchTerm} />
 				<Content {...props} />
 			</div>
-			{/* <Footer /> */}
+			<Footer />
 		</React.Fragment>
 	);
 };
