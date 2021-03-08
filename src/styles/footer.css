@@ -1,0 +1,34 @@
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.15);
+	height: 5vh;
+	margin: 0 15vw;
+	font-size: 1.25vmin;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.footer a {
+	margin: 0 0.75vmin;
+	text-decoration: none;
+	color: rgba(0, 0, 0, 0.75);
+	transition: 0.5s;
+}
+
+.footer a:hover {
+	color: #333;
+	transform: scale(1.025);
+}
+
+@media only screen and (max-width: 1024px) {
+	.footer {
+		margin: 0 5vw;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.footer {
+		font-size: 2vmin;
+	}
+}
