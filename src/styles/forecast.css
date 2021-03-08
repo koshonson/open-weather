@@ -4,6 +4,7 @@
 	display: grid;
 	grid-template-columns: repeat(7, auto);
 	grid-gap: 5px;
+	transition: 0.5s;
 }
 
 .forecast-daybox {
@@ -49,7 +50,7 @@
 }
 
 .forecast-daybox .temp-box > div {
-	font-size: 1.75vw;
+	font-size: 1.5vw;
 }
 
 .forecast-daybox .temp-box .min {
@@ -91,4 +92,74 @@
 .forecast-daybox .wind-box .icon {
 	font-size: 1.25vw;
 	margin-left: 0.25vw;
+}
+
+@media only screen and (max-width: 1024px) {
+	.forecast {
+		padding: 5px 5px;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(7, auto);
+		grid-gap: 5px;
+	}
+
+	.forecast-daybox {
+		padding: 10px 0;
+		font-size: 90%;
+		grid-template-rows: 1fr;
+		grid-template-columns: repeat(5, 1fr);
+	}
+
+	.forecast-daybox .temp-box {
+		font-size: 1.75vmin;
+	}
+
+	.forecast-daybox .temp-box > div {
+		font-size: 2vmin;
+	}
+
+	.forecast-daybox .wind-box {
+		font-size: 1.25vmin;
+	}
+}
+
+@media only screen and (max-width: 840px) {
+	.forecast-daybox {
+		padding: 10px 0;
+		font-size: 2vmin;
+		grid-template-rows: 1fr;
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.forecast-daybox .description {
+		display: none;
+	}
+
+	.forecast-daybox .temp-box > div {
+		font-size: 2.5vmin;
+	}
+
+	.forecast-daybox .wind-box {
+		font-size: 1.75vmin;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.forecast-daybox {
+		padding: 10px 0;
+		font-size: 3vmin;
+		grid-template-rows: 1fr;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.forecast-daybox .icon-box {
+		font-size: 8vmin;
+	}
+
+	.forecast-daybox .temp-box > div {
+		font-size: 4vmin;
+	}
+
+	.forecast-daybox .wind-box {
+		display: none;
+	}
 }
