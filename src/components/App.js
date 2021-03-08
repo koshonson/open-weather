@@ -7,20 +7,22 @@ import Current from './Current';
 import Forecast from './Forecast';
 
 const App = () => {
-	const [searchTerm, setSearchTerm] = useState('Pisek');
-	const [location, setLocation] = useState(null);
-	const [currentWeather, setCurrentWeather] = useState(null);
-	const [forecast, setForecast] = useState(null);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [notFound, setNotFound] = useState(false);
+	const [location, setLocation] = useState(undefined);
+	const [currentWeather, setCurrentWeather] = useState(undefined);
+	const [forecast, setForecast] = useState(undefined);
 	const [units, setUnits] = useState('celsius');
 
 	useEffect(async () => {
+		setNotFound(false);
 		if (searchTerm) {
 			try {
 				const { data } = await getWeather.currentByTerm(searchTerm);
 				setCurrentWeather(parseWeather.current(data));
 				setLocation(parseWeather.coords(data));
 			} catch {
-				console.log(`No such location (${searchTerm}) found.`);
+				setNotFound(true);
 			}
 		}
 	}, [searchTerm]);
@@ -36,6 +38,17 @@ const App = () => {
 		units === 'celsius' ? setUnits('fahrenheit') : setUnits('celsius');
 	};
 
+	const renderError = () => {
+		if (notFound) {
+			return (
+				<Message
+					className="error message"
+					message={`! Sorry, "${searchTerm}" wasn't found. Try search for a bigger settlement nearby. !`}
+				/>
+			);
+		}
+	};
+
 	const renderCurrent = () => {
 		if (currentWeather) {
 			return (
@@ -47,7 +60,10 @@ const App = () => {
 			);
 		} else {
 			return (
-				<Message message="Do manual search or enable GPS localization..." />
+				<Message
+					className="message"
+					message="To find out how the weather would be like, do manual search or enable GPS localization..."
+				/>
 			);
 		}
 	};
@@ -63,6 +79,7 @@ const App = () => {
 	return (
 		<div className="container">
 			<Search setSearchTerm={setSearchTerm} />
+			{renderError()}
 			{renderCurrent()}
 			{renderForecast()}
 		</div>

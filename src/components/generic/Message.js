@@ -1,19 +1,7 @@
 import React from 'react';
 
-const Message = ({ message }) => {
-	return (
-		<div
-			style={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				paddingTop: '40px',
-				paddingBottom: '20px'
-			}}
-		>
-			{message}
-		</div>
-	);
+const Message = ({ className, message }) => {
+	return <div className={className}>{message}</div>;
 };
 
 export default Message;
