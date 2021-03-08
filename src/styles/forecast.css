@@ -120,6 +120,10 @@
 	.forecast-daybox .wind-box {
 		font-size: 1.25vmin;
 	}
+
+	.forecast-daybox .wind-box .icon {
+		font-size: 2vmin;
+	}
 }
 
 @media only screen and (max-width: 840px) {

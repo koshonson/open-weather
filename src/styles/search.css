@@ -54,3 +54,15 @@
 		padding: 10px;
 	}
 }
+
+@media only screen and (max-width: 480px) {
+	.button {
+		font-size: 3vmin;
+		padding: 15px 10px;
+	}
+
+	.term-input {
+		font-size: 3vmin;
+		padding: 15px;
+	}
+}

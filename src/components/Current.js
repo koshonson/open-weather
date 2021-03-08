@@ -27,14 +27,16 @@ const Current = ({ data, units, switchUnits }) => {
 				subtitle={data.weather.description}
 				timestamp={data.ts}
 			/>
-			<TempBox
-				className="cw-temp"
-				tC={data.tC}
-				tF={data.tF}
-				units={units}
-				switchUnits={switchUnits}
-			/>
-			<IconBox className="cw-icon" icon={weatherIcon} />
+			<div className="display">
+				<TempBox
+					className="cw-temp"
+					tC={data.tC}
+					tF={data.tF}
+					units={units}
+					switchUnits={switchUnits}
+				/>
+				<IconBox className="cw-icon" icon={weatherIcon} />
+			</div>
 			<InfoBox className="cw-info" params={infoBoxParams} />
 		</div>
 	);
