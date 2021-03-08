@@ -13,13 +13,13 @@ const App = () => {
 	const [forecast, setForecast] = useState(undefined);
 	const [units, setUnits] = useState('celsius');
 
-	// useEffect(() => {
-	// 	window.navigator.geolocation.getCurrentPosition(
-	// 		({ coords }) =>
-	// 			setLocation({ lat: coords.latitude, lon: coords.longitude }),
-	// 		err => console.log('Geolocation not available or user denied.')
-	// 	);
-	// }, []);
+	useEffect(() => {
+		window.navigator.geolocation.getCurrentPosition(
+			({ coords }) =>
+				setLocation({ lat: coords.latitude, lon: coords.longitude }),
+			err => console.log('Geolocation not available or user denied.')
+		);
+	}, []);
 
 	useEffect(async () => {
 		setNotFound(false);
@@ -35,15 +35,15 @@ const App = () => {
 	}, [searchTerm]);
 
 	useEffect(async () => {
-		// if (!current && location) {
-		// 	const { data } = await getWeather.currentByGeo(location);
-		// 	setCurrent(parseWeather.current(data));
-		// }
+		if (!current && location) {
+			const { data } = await getWeather.currentByGeo(location);
+			setCurrent(parseWeather.current(data));
+		}
 		if (location) {
 			const { data } = await getWeather.forecast(location);
 			setForecast(parseWeather.forecast(data));
 		}
-	}, [location /*, current*/]);
+	}, [location, current]);
 
 	const switchUnits = () => {
 		units === 'celsius' ? setUnits('fahrenheit') : setUnits('celsius');
