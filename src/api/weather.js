@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { offsetLocalTimezone } from '../util/date';
+import { celsiusToFahrenheit, roundNum } from '../util/units';
 
 const KEY = '2e83a2a05ccc5a5dbff11c390210a1e1';
 const rootURL = 'https://api.openweathermap.org/data/2.5/';
@@ -64,7 +66,8 @@ export const parseWeather = {
 			name,
 			country,
 			wind,
-			temp,
+			tC: roundNum(temp),
+			tF: roundNum(celsiusToFahrenheit(temp)),
 			humidity,
 			pressure,
 			feelsLike_temp: feels_like,
@@ -72,8 +75,7 @@ export const parseWeather = {
 				id,
 				description
 			},
-			ts: new Date(dt * 1000),
-			tsLocal: new Date(dt * 1000 + timezone * 1000)
+			ts: offsetLocalTimezone(new Date(dt * 1000 + timezone * 1000))
 		};
 	},
 	forecast: ({ daily }) => {
@@ -87,8 +89,10 @@ export const parseWeather = {
 				wind_speed
 			} = daily[i];
 			forecast.push({
-				tmax: max,
-				tmin: min,
+				tmaxC: roundNum(max),
+				tminC: roundNum(min),
+				tmaxF: celsiusToFahrenheit(roundNum(max)),
+				tMinF: celsiusToFahrenheit(roundNum(min)),
 				weather: { id, description },
 				wind: { deg: wind_deg, speed: wind_speed },
 				ts: new Date(dt * 1000)

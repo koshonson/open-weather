@@ -247,9 +247,9 @@ const NoIcon = () => <div style={{ font: '2em bold, monospace' }}>N/A</div>;
 const parseWeatherData = weather => {
 	const {
 		weather: { id },
-		tsLocal
+		ts
 	} = weather;
-	const hrs = tsLocal.getHours();
+	const hrs = ts.getHours();
 	const code = hrs > 20 || hrs < 7 ? 'n' : 'd';
 	return `${code}${id}`;
 };
