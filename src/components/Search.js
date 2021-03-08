@@ -23,6 +23,7 @@ const Search = ({ setSearchTerm }) => {
 					className="term-input"
 					value={term}
 					onChange={onInputChange}
+					autoFocus
 				></input>
 				<button type="submit" className="button">
 					SEARCH
