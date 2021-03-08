@@ -1,4 +1,4 @@
-#weather app
+# weather app
 
 Simple app displaying Current weather on a location + 7 days forecast.
 
