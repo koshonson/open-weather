@@ -1,26 +1,22 @@
 import React from 'react';
 
 const LinkedMessage = ({ className, message, links }) => {
-	// const regex = /\$\$\(.+\)/g;
-	// const anchors = [...message.matchAll(regex)].map(match => {
-	// 	return match[1];
-	// });
-
 	const parseMessage = () => {
-		const regex = /\$\$\(\w+\)/g;
-		return message.replace(regex, match => {
-			const [name] = match.match(/\w+/);
-			const { label, link } = links[name];
-			return `<a href=${link}>${label}</a>`;
+		return message.split(' ').map((part, i) => {
+			if (part.slice(0, 2) == '$$') {
+				const [name] = part.match(/\w+/);
+				const { label, link } = links[name];
+				return (
+					<a href={link} key={i}>
+						{label}
+					</a>
+				);
+			}
+			return <span key={i}>{part}</span>;
 		});
 	};
 
-	return (
-		<div
-			dangerouslySetInnerHTML={{ __html: parseMessage() }}
-			className={className}
-		></div>
-	);
+	return <div className={className}>{parseMessage()}</div>;
 };
 
 export default LinkedMessage;
