@@ -26,3 +26,8 @@ const DAYS = {
 export const getMonthName = month => MONTHS[month];
 export const getDayName = day => DAYS[day];
 export const toDoubleDigit = num => `0${num}`.slice(-2);
+
+export const offsetLocalTimezone = date => {
+	const offset = date.getTimezoneOffset() * 60 * 1000;
+	return new Date(date.getTime() + offset);
+};
