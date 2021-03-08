@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { offsetLocalTimezone } from '../util/date';
+import { getDayName, offsetLocalTimezone } from '../util/date';
 import { celsiusToFahrenheit, roundNum } from '../util/units';
 
 const KEY = '2e83a2a05ccc5a5dbff11c390210a1e1';
@@ -89,13 +89,15 @@ export const parseWeather = {
 				wind_speed
 			} = daily[i];
 			forecast.push({
-				tmaxC: roundNum(max),
-				tminC: roundNum(min),
-				tmaxF: celsiusToFahrenheit(roundNum(max)),
-				tMinF: celsiusToFahrenheit(roundNum(min)),
+				temp: {
+					tmaxC: roundNum(max),
+					tminC: roundNum(min),
+					tmaxF: roundNum(celsiusToFahrenheit(max)),
+					tminF: roundNum(celsiusToFahrenheit(min))
+				},
 				weather: { id, description },
 				wind: { deg: wind_deg, speed: wind_speed },
-				ts: new Date(dt * 1000)
+				day: getDayName(new Date(dt * 1000).getDay())
 			});
 		}
 		return forecast;
