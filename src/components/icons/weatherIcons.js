@@ -249,7 +249,7 @@ const parseWeatherData = weather => {
 		weather: { id },
 		ts
 	} = weather;
-	const hrs = ts.getHours();
+	const hrs = ts ? ts.getHours() : 12;
 	const code = hrs > 20 || hrs < 7 ? 'n' : 'd';
 	return `${code}${id}`;
 };

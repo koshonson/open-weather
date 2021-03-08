@@ -7,7 +7,7 @@ const Parameter = ({ className, label, value, units, icon }) => {
 			return (
 				<Icon
 					className="icon"
-					style={{ transform: `rotate(${icon.dir + 180}deg)` }}
+					style={{ transform: `rotate(${icon.dir || 0 + 180}deg)` }}
 				/>
 			);
 		}

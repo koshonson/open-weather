@@ -2,7 +2,7 @@ import '../styles/current.css';
 import React from 'react';
 import { getIcon } from './icons';
 import Title from './generic/Title';
-import TemperatureBox from './generic/TemperatureBox';
+import TempBox from './generic/TempBox';
 import IconBox from './generic/IconBox';
 import InfoBox from './generic/InfoBox';
 
@@ -27,7 +27,7 @@ const Current = ({ data, units, switchUnits }) => {
 				subtitle={data.weather.description}
 				timestamp={data.ts}
 			/>
-			<TemperatureBox
+			<TempBox
 				className="cw-temp"
 				tC={data.tC}
 				tF={data.tF}
