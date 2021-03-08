@@ -7,7 +7,7 @@ import Current from './Current';
 import Forecast from './Forecast';
 
 const App = () => {
-	const [searchTerm, setSearchTerm] = useState('');
+	const [searchTerm, setSearchTerm] = useState('Pisek');
 	const [location, setLocation] = useState(null);
 	const [currentWeather, setCurrentWeather] = useState(null);
 	const [forecast, setForecast] = useState(null);
@@ -54,7 +54,9 @@ const App = () => {
 
 	const renderForecast = () => {
 		if (forecast) {
-			return <Forecast />;
+			return (
+				<Forecast data={forecast} units={units} switchUnits={switchUnits} />
+			);
 		}
 	};
 

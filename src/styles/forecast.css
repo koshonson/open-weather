@@ -1,3 +1,94 @@
 .forecast {
-	background-color: darkgoldenrod;
+	padding: 10px 5px;
+	background-color: rgba(0, 0, 0, 0.15);
+	display: grid;
+	grid-template-columns: repeat(7, auto);
+	grid-gap: 5px;
+}
+
+.forecast-daybox {
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	padding: 15px 0;
+	font-size: 80%;
+	display: grid;
+	grid-template-rows: repeat(5, auto);
+	transition: 0.5s;
+}
+
+.forecast-daybox:hover {
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.forecast-daybox > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.forecast-daybox .icon-box {
+	font-size: 4vw;
+	transition: 0.5s;
+}
+
+.forecast-daybox:hover .icon-box {
+	font-size: 4.25vw;
+	color: #222;
+}
+
+.forecast-daybox .description {
+	color: #444;
+	text-transform: capitalize;
+	font-style: italic;
+}
+
+.forecast-daybox .temp-box {
+	font-size: 1.5vw;
+	transform: scaleX(0.8);
+}
+
+.forecast-daybox .temp-box > div {
+	font-size: 1.75vw;
+}
+
+.forecast-daybox .temp-box .min {
+	color: rgba(15, 20, 150, 0.8);
+}
+
+.forecast-daybox .temp-box .max {
+	color: rgba(200, 20, 15, 0.9);
+}
+
+.forecast-daybox .temp-box .units {
+	cursor: pointer;
+	user-select: none;
+}
+
+.forecast-daybox .temp-box .units:hover {
+	transform: scale(1.05);
+}
+
+.forecast-daybox .wind-box {
+	position: relative;
+	color: #444;
+	font-size: 0.75vw;
+}
+
+.forecast-daybox .wind-box .label {
+	font-weight: bold;
+	font-style: italic;
+}
+
+.forecast-daybox .wind-box .value {
+	margin: 0 0.25vw;
+}
+
+.forecast-daybox .wind-box .units {
+	color: #333;
+}
+
+.forecast-daybox .wind-box .icon {
+	font-size: 1.25vw;
+	margin-left: 0.25vw;
 }
