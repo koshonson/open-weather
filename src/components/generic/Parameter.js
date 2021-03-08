@@ -1,13 +1,11 @@
 import React from 'react';
 
-const Parameter = ({ classNames, label, value, unit }) => {
-	const { cnComponent, cnLabel, cnValue, cnUnit } = classNames || {};
-
+const Parameter = ({ className, label, value, units }) => {
 	return (
-		<div className={cnComponent}>
-			<span className={cnLabel}>{label}: </span>
-			<span className={cnValue}>{value} </span>
-			<span className={cnUnit}>{unit}</span>
+		<div className={className}>
+			<span className="label">{label}: </span>
+			<span className="value">{value} </span>
+			<span className="units">{units}</span>
 		</div>
 	);
 };
