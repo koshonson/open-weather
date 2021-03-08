@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TemperatureBox = ({ className, tC, tF, units, switchUnits }) => {
+const TempBox = ({ className, tC, tF, units, switchUnits }) => {
 	console.log(tC, tF);
 	return (
 		<div className={className}>
@@ -12,4 +12,4 @@ const TemperatureBox = ({ className, tC, tF, units, switchUnits }) => {
 	);
 };
 
-export default TemperatureBox;
+export default TempBox;
