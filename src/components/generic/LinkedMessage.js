@@ -2,18 +2,35 @@ import React from 'react';
 
 const LinkedMessage = ({ className, message, links }) => {
 	const parseMessage = () => {
-		return message.split(' ').map((part, i) => {
-			if (part.slice(0, 2) == '$$') {
-				const [name] = part.match(/\w+/);
-				const { label, link } = links[name];
-				return (
-					<a href={link} key={i}>
-						{label}
-					</a>
-				);
-			}
-			return <span key={i}>{part}</span>;
-		});
+		const parsed = message.split(' ').reduce(
+			(acc, part, i) => {
+				if (part.slice(0, 2) === '$$') {
+					const [name] = part.match(/\w+/);
+					const { label, link } = links[name];
+					if (acc.block) {
+						acc.result.push(
+							<span key={`${className}-${i - 1}`}>
+								{acc.block.trim()}
+							</span>
+						);
+						acc.block = '';
+					}
+					acc.result.push(
+						<a href={link} key={`${className}-${i}`}>
+							{label}
+						</a>
+					);
+					return acc;
+				} else {
+					acc.block += ' ' + part;
+					return acc;
+				}
+			},
+			{ block: '', result: [] }
+		);
+		if (parsed.block)
+			parsed.result.push(<span key="last">{parsed.block.trim()}</span>);
+		return parsed.result;
 	};
 
 	return <div className={className}>{parseMessage()}</div>;
